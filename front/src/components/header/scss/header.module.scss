@@ -1,0 +1,142 @@
+* {
+	background-color: #fff;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.header {
+	//display: flex;
+	//background-color: lightcyan;
+	.headerList {
+		display: flex;
+		flex-direction: column;
+		max-width: 1200px;
+		margin-inline: auto;
+		.firstLine {
+			margin-inline: 1rem;
+			//background-color: green;
+			display: flex;
+			justify-content: space-between;
+			height: 55px;
+			align-items: center;
+			.qablock {
+				display: flex;
+				align-items: center;
+				text-decoration: none;
+				img {
+					height: 30px;
+				}
+				p {
+					color: #010101;
+				}
+			}
+			.profileCartBlock {
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				.profileBlock {
+					display: flex;
+					//margin-right: 30px;
+					align-items: center;
+					//flex-direction: column;
+					justify-content: center;
+					text-decoration: none;
+					img {
+						//position: relative;
+						//margin-top: 10px;
+						height: 40px;
+						border-radius: 50%;
+						margin-right: 15px;
+					}
+					p {
+						//position: relative;
+						//background-color: rgb(131, 131, 131);
+						//margin-top: -15px;
+						color: rgb(17, 188, 245);
+						font-size: 16px;
+					}
+				}
+				section {
+					width: 1px;
+					height: 20px;
+					margin-inline: 10px;
+					background-color: #010101;
+				}
+				.cartBlock {
+					display: flex;
+					//margin-right: 30px;
+					align-items: center;
+					//flex-direction: column;
+					justify-content: center;
+					text-decoration: none;
+					img {
+						//position: relative;
+						//margin-top: 10px;
+						height: 30px;
+						margin-right: 15px;
+					}
+					p {
+						//position: relative;
+						//background-color: rgb(131, 131, 131);
+						//margin-top: -15px;
+						color: rgb(17, 188, 245);
+						font-size: 16px;
+					}
+				}
+			}
+		}
+		.secondLine {
+			//background-color: lightcyan;
+			height: 60px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			.logo {
+				img {		
+					height: 55px;
+				}
+			}
+			.search {
+				display: flex;
+				border: 1px solid black;
+				padding-left: 5px;
+				.searchInput {
+					input {
+						all: unset;
+						height: 30px;
+						border-right: 1px solid black;
+						//border: none;
+						//&:focus-visible {
+						//	border: none;
+						//}
+					}
+				}
+				.searchBtn {
+					button {
+						padding-inline: 10px;
+						height: 30px;
+						border: none;
+					}
+				}
+			}
+		}
+		.thirdLine {
+			height: 25px;
+			//background-color: gray;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			.categories {
+				display: flex;
+				justify-content: space-between;
+				li {
+					a {
+						text-decoration: none;
+						color: #010101;
+					}
+				}
+			}
+		}
+	}
+}

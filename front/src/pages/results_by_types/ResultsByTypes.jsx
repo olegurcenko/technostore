@@ -1,42 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from "../../redux/slices/products";
+import { fetchProductsByType } from "../../redux/slices/products";
+import { useParams } from 'react-router-dom';
 import { ProductCard } from "../../components/main/productCard/ProductCard";
 
-export const Home = () => {
+export const ResultsByTypes = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { products, status } = useSelector((state) => state.products);
+  const { type } = useParams()
   const isLoading = (products.status === 'loading')
-  useEffect(() => {
-    const fetchData = () => {
-      setLoading(true);
 
-      dispatch(fetchProducts())
-        .then(() => {
-          setLoading(false);
-          setError(null);
-        })
-        .catch((error) => {
-          console.error('Error loading products:', error);
-          setLoading(false);
-          setError('Failed to load products');
-        });
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        await dispatch(fetchProductsByType(type));
+        setLoading(false);
+        setError(null);
+      } catch (error) {
+        console.error('Error loading products:', error);
+        setLoading(false);
+        setError('Failed to load products');
+      }
     };
 
     fetchData();
-  }, [dispatch]);
-  
+  }, [dispatch, type]); // Include 'type' as a dependency
+
   console.log(userData)
   console.log('Products:', products);
 
   return (
     <div>
-    
-      {(isLoading ? [...Array(5)] : products.items).map((obj, index) => 
-          isLoading ? (
+      {(isLoading || !products.items ? [...Array(5)] : products.items).map((obj, index) => 
+          isLoading || !products.items ? (
           <ProductCard key={index} isLoading={true}/> 
           ) : (
             <ProductCard
@@ -50,11 +50,8 @@ export const Home = () => {
               long_description={obj.long_description}
               parameters={obj.parameters}
               price={obj.price}
-              //reviews={obj.reviews}
-              />
-          ))}    
+            />
+          ))}
     </div>
   );
 };
-
-export default Home;

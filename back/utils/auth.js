@@ -4,20 +4,17 @@ import AdminModel from "../models/admin.js";
 
 export const userAuth = async (req, res, next) => {
 	try {
-		const token = req.headers["authorization"]
+		const token = req.headers["authorization"].replace(/Bearer\s?/, '')
 
-		//console.log(token)
+		console.log(token)
 
 		const decoded = jwt.verify(token, 'secret123')
 
-		//console.log(decoded._id)
+		console.log(decoded._id)
 
-		const user = await UserModel.findOne({
-			_id: decoded._id
-		})
-
+		req.userId = decoded._id
 		next()
-
+		
 	} catch (err) {
 		console.log(err)
 		res.status(500).json({
@@ -28,18 +25,15 @@ export const userAuth = async (req, res, next) => {
 
 export const adminAuth = async (req, res, next) => {
 	try {
-		const token = req.headers["authorization"]
+		const token = req.headers["authorization"].replace(/Bearer\s?/, '')
 
-		//console.log(token)
+		console.log(token)
 
 		const decoded = jwt.verify(token, 'secret123')
 
-		//console.log(decoded._id)
+		console.log(decoded._id)
 
-		const admin = await AdminModel.findOne({
-			_id: decoded._id
-		}) 
-
+		req.userId = decoded._id
 		next()
 		
 	} catch (err) {

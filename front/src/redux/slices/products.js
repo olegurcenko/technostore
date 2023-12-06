@@ -6,6 +6,11 @@ export const fetchProducts = createAsyncThunk('product/fetchProducts', async () 
 	return data
 })
 
+export const fetchProductsByType = createAsyncThunk('product/fetchProductsByType', async (type) => {
+	const { data } = await axios.get(`/product/search/${type}`)
+	return data;
+})
+
 const initialState = {
 	products: {
 		items: [],
@@ -18,7 +23,7 @@ const productSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: {
-		[fetchProducts.pendng]: (state) => {
+		[fetchProducts.pending]: (state) => {
 			state.products.items = []
 			state.products.status = 'loading'
 		},
@@ -29,7 +34,19 @@ const productSlice = createSlice({
 		[fetchProducts.rejected]: (state) => {
 			state.products.items = []
 			state.products.status = 'error'
-		}
+		},
+		[fetchProductsByType.pending]: (state) => {
+			state.products.items = []
+			state.products.status = 'loading'
+		},
+		[fetchProductsByType.fulfilled]: (state, action) => {
+			state.products.items = action.payload
+			state.products.status = 'loaded'
+		},
+		[fetchProductsByType.rejected]: (state) => {
+			state.products.items = []
+			state.products.status = 'error'
+		},
 	}
 })
 

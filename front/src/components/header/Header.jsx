@@ -5,12 +5,29 @@ import qaimage from './images/question.png'
 import logo from './images/logo.png'
 import profile from './images/profile.webp'
 import cart from './images/cart.png'
-import './css/normalise.css'
+import logout_png from './images/logout.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from "../../redux/slices/auth";
 
 export const Header = (props) => {
+	
+	
+	const dispatch = useDispatch()
+	const userData = useSelector((state) => state.auth.data)
+	const orderPrice = userData ? userData.activePreorderedItems.reduce((summ, item) => summ + item.price, 0) : 0 
+
+	
+	const onClickLogout = () => {
+		if (window.confirm("Are you sure you want to leave?"))
+		{
+			dispatch(logout())
+			window.localStorage.removeItem("token")
+		}
+	}
 	return <section className={styles.header}>
 		<ul className={styles.headerList}>
 			{/* Q&A, registration and cart */}
+			
 			<li className={styles.firstLine}>
 				<Link className={styles.qablock} to='.'>
 					<img src={qaimage} alt="" />
@@ -18,10 +35,16 @@ export const Header = (props) => {
 				</Link>
 				<ul className={styles.profileCartBlock}>
 					<li>
-						<Link className={styles.profileBlock}>
+						<Link className={styles.profileBlock} to='/login'>
 							<img src={profile} alt="" />
-							<p>Profile</p>
+							<p>{userData ? userData.fullName : 'Profile'}</p>
+							{userData ? 
+							<button onClick={onClickLogout}>
+								<img src={logout_png} alt="" />
+							</button> : 
+							<></>}
 						</Link>
+						
 					</li>
 					<li>
 						<section></section>
@@ -29,14 +52,15 @@ export const Header = (props) => {
 					<li>
 						<Link className={styles.cartBlock}>
 							<img src={cart} alt="" />
-							<p>1 230 kc</p>
+							<p>{orderPrice} kc</p>
 						</Link>
 					</li>
 				</ul>
 			</li>
+			
 			{/* logo and search btn */}
 			<li className={styles.secondLine}>
-				<Link className={styles.logo}>
+				<Link to='/' className={styles.logo}>
 					<img src={logo} alt="" />
 				</Link>
 				<ul className={styles.search}>
@@ -48,21 +72,22 @@ export const Header = (props) => {
 					</li>
 				</ul>
 			</li>
+			
 			{/* categories */}
 			<li className={styles.thirdLine}>
 				<ul className={styles.categories}>
 					<li>
-						<Link>
+						<Link to='/product/search/mobile_phone'>
 							Smartphones
 						</Link>						
 					</li>
 					<li>
-						<Link>
+						<Link to='/product/search/notebook'>
 							Notebooks
 						</Link>						
 					</li>
 					<li>
-						<Link>
+						<Link to='/product/search/tablet'>
 							Tablets
 						</Link>						
 					</li>

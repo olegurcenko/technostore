@@ -13,6 +13,32 @@ export const getAll = async (req, res) => {
 	}
 }
 
+export const getByType = async (req, res) => {
+	try {
+		const type = req.params.type
+
+		const products = await productModel.find(
+			{
+				product_type: type,
+			}
+		)
+
+		if (products.length > 0) {
+			res.json(products)
+		} else {
+			res.status(500).json({
+				message: 'Cant get products'
+			})
+		}
+
+	} catch (err) {
+		console.log(err)
+		res.status(500).json({
+			message: 'Cant get products'
+		})
+	}
+}
+
 export const getOne = async (req, res) => {
 	try {
 		const prodId = req.params.id
@@ -80,6 +106,35 @@ export const remove = async (req, res) => {
 		console.log(err)
 		res.status(500).json({
 			message: 'Cannot delete this product'
+		})
+	}
+}
+
+export const update = async (req, res) => {
+	try {
+		const prodId = req.params.id
+
+		await productModel.updateOne({
+			_id: prodId,
+		},
+		{
+			title: req.body.title,
+			brand: req.body.brand,
+			product_type: req.body.product_type,
+			short_description: req.body.short_description,
+			long_description: req.body.long_description,
+			price: req.body.price,
+			images: req.body.imgeUrl
+		})
+
+		res.json({
+			success: true
+		})
+	} catch (err) {
+		console.log(err)
+		//console.log(req.body)
+		res.status(500).json({
+			message: 'cant update post'
 		})
 	}
 }

@@ -1,0 +1,91 @@
+.headerMobile {
+	width: 100%;
+	margin-bottom: 10px;
+
+	.headerFirstRow {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.menuOpener {
+			width: 15vw;
+			display: flex;
+			justify-content: center;
+
+			button {
+				border: black 1px solid;
+				box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+				position: relative;
+				user-select: none;
+				-webkit-user-select: none;
+				touch-action: manipulation;
+
+				&:active {
+					box-shadow: 0px 0px 0px 0px;
+					top: 3px;
+					left: 3px;
+				}
+			}
+
+			img {
+				width: 20px;
+			}
+		}
+		
+		.logoLink {
+		width: 70vw;
+		display: flex;
+		justify-content: start;
+		align-items: center;
+		
+		a {
+			display: flex;
+			align-items: center;
+			text-decoration: none;
+			img {
+				width: 35px;
+			}
+			p {
+				color: #010101;
+				font-size: 12px;
+			}
+		}
+		
+	}
+
+	.profileElem {
+		position: relative;
+		top: 4px;
+		width: 15vw;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #ffffff00;
+		
+		a {
+			background-color: #ffffff00;
+			text-decoration: none;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			
+			img {
+				//border: 2px solid black;
+				max-width: 25px;
+				border-radius: 50%;
+			}
+			
+			p {
+				position: relative;
+				bottom: 6px;
+				background-color: #ffffff94;
+				color: #010101;
+				font-size: 12px;
+				display: flex;
+				justify-content: center;
+			}
+		}
+	}
+	
+	}}

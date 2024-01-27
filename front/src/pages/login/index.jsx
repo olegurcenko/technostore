@@ -1,92 +1,86 @@
-import React from "react";
+import { useAdminData, useUserData } from '../../context/authDataContext';
+import { fetchAdminAuth, fetchAuth } from "../../redux/slices/auth";
+import { useNavigate, Link } from 'react-router-dom';
+import styles from './css/login.module.css';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-import { fetchAuth, selectIsAuth } from "../../redux/slices/auth";
-import TextField from '@mui/material/TextField';
+import { useDispatch } from 'react-redux';
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import Typography from '@mui/material/Typography';
+import React from "react";
 
 export const Login = () => {
-  const isAuth = useSelector(selectIsAuth);
+  const { adminData, updateAdminData } = useAdminData();
+  const { userData, updateUserData } = useUserData();
   const dispatch = useDispatch();
-  
-  const { 
-    register, 
-    handleSubmit, 
-    formState: { errors, isValid }
-  } = useForm({
-    defaultValues: {
-    //  email: '',
-    //  password: '',
-    },
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm({
+    defaultValues: {},
     mode: 'onChange'
   });
-  
+
   const onSubmit = async (values) => { 
-	try {
-	  const actionResult = await dispatch(fetchAuth(values));
-	  
-	  if (fetchAuth.fulfilled.match(actionResult)) {
-		// Если действие успешно выполнено, получаем данные из actionResult.payload
-		const { token } = actionResult.payload;
-		console.log(actionResult.payload)
-		
-		if (token) {
-		  window.localStorage.setItem('token', token);
-		} else {
-		  throw new Error('Error while authorization: no token in payload');
-		}
-	  } else if (fetchAuth.rejected.match(actionResult)) {
-		// Если действие было отклонено, обрабатываем ошибку
-		throw new Error('Error while authorization: ' + actionResult.error.message);
-	  } else {
-		throw new Error('Unexpected result from fetchAuth');
+	  try {
+	    const actionResult = await dispatch(fetchAuth(values));
+    
+	    if (fetchAuth.fulfilled.match(actionResult)) {
+        const { token } = actionResult.payload;
+      
+        if (token) {
+          window.localStorage.setItem('token', token);
+          updateUserData(actionResult.payload);
+          navigate('/');
+        } else {
+          throw new Error('Error while authorization: no token in payload');
+        }
+      } else if (fetchAuth.rejected.match(actionResult)) {
+        throw new Error('Error while authorization: ' + actionResult.error.message);
+	    } else {
+        throw new Error('Unexpected result from fetchAuth');
+	    }
+	  } catch (error) {
+      try {
+        const actionResult = await dispatch(fetchAdminAuth(values));
+      
+        if (fetchAdminAuth.fulfilled.match(actionResult)) {
+          const { token } = actionResult.payload;
+          if (token) {
+            window.localStorage.setItem('token', token);
+            updateAdminData(actionResult.payload)
+            navigate('/admin')
+          } else {
+            throw new Error('Error while authorization: no token in payload');
+          }
+        } else if (fetchAdminAuth.rejected.match(actionResult)) {
+          throw new Error('Error while authorization: ' + actionResult.error.message);
+        } else {
+          throw new Error('Unexpected result from fetchAuth');
+        }
+      } catch(error){
+        console.error(error.message);
+        alert('Error during authorization');
+      }
 	  }
-	} catch (error) {
-	  console.error(error.message);
-	  // Handle errors (e.g., show an error message to the user)
-	  alert('Error during authorization');
-	}
   };
-  
-  if (isAuth) {
-    return <Navigate to='/' />;
-  }
 
   return (
-    <Paper>
-      <Typography>
-        Вход в аккаунт
-      </Typography>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {/*<TextField
-          label="E-Mail"
-          type="email"
-          autoComplete="email"
-          error={Boolean(errors.email?.message)}
-          helperText={errors.email?.message}
-          {...register('email', { required: 'Your email is empty' })}
-          fullWidth
-        />
-        <TextField 
-          label="Password" 
-          type="password"
-          autoComplete="current-password"
-          error={Boolean(errors.password?.message)}
-          helperText={errors.password?.message}
-          {...register('password', { required: 'Your password is empty' })}
-          fullWidth 
-        />
-        <Button type="submit" size="large" variant="contained" fullWidth>
-          Войти
-        </Button>
-		*/}
-		<input type="text" {...register('email')} />
-		<input type="password" {...register('password')} />
-		<button type="submit">Submit</button>
-      </form>
-    </Paper>
+    <section className={styles.loginPage}>
+      <Paper className={styles.loginBlock}>
+        <h1 className={styles.title}>
+          Login
+        </h1>
+        <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
+          <input placeholder='e-mail' id='login' type="text" {...register('email')} />
+          <label for='login'>e-mail</label>
+          <input placeholder='password' id='password' type="password" {...register('password')} />
+          <label for='password'>password</label>
+          <span>
+            <button type="submit">Submit</button>
+          </span>
+        </form>
+      </Paper>
+      <span className={styles.loginLinksBlock}>
+        <Link className={styles.loginLink} to='/register'>Dont have Account?</Link>
+        <Link className={styles.loginLink} to='/admin/login'>Admin?</Link>
+      </span>
+    </section>
   );
 };

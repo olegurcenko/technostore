@@ -1,0 +1,151 @@
+.userCard {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 15px;
+  max-width: 800px;
+  border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 200px;
+  margin: 20px;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  --webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  background-color: #f5f5f7;
+  margin-bottom: 10px;
+}
+.userCard:hover {
+  --webkit-transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+.userCard .topInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.userCard .topInfo .profilePhoto {
+  height: 120px;
+  border-radius: 20px;
+  width: auto;
+}
+.userCard .topInfo .topInfoText {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-left: 15px;
+  width: 100%;
+  height: 80px;
+}
+.userCard .topInfo .topInfoText li p {
+  font-size: 20px;
+}
+.userCard .topInfo .topInfoText .topLine {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.userCard .topInfo .topInfoText .midLine p {
+  font-size: 14px;
+  color: rgba(1, 1, 1, 0.4392156863);
+}
+.userCard .topInfo .topInfoText .botLine p {
+  font-size: 14px;
+  color: rgba(1, 1, 1, 0.4392156863);
+}
+.userCard .bottomInfo {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.userCard .bottomInfo p {
+  margin-top: 10px;
+}
+.userCard .bottomInfo a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: none;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: rgba(1, 1, 1, 0.3137254902);
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  --webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  background-color: #f5f5f7;
+}
+.userCard .bottomInfo a:hover {
+  color: #010101;
+  --webkit-transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 12px 24px 0px, rgba(0, 0, 0, 0.3) 0px 6px 12px 0px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 12px 24px 0px, rgba(0, 0, 0, 0.3) 0px 6px 12px 0px;
+}
+
+.copyButton:hover button {
+  color: #010101;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+.copyButton:hover button img {
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  opacity: 1;
+}
+.copyButton button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: rgba(1, 1, 1, 0.3137254902);
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  border: none;
+  background-color: inherit;
+}
+.copyButton button img {
+  max-height: 18px;
+  margin-left: 3px;
+  opacity: 0.5;
+  border-radius: 0;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+.copyButton button p {
+  font-size: 12px !important;
+}

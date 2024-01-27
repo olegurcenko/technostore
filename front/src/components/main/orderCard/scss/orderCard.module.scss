@@ -1,0 +1,69 @@
+.orderCard {
+	border-radius: 20px;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	max-width: 800px;
+	width: 100%;
+	height: 500px;
+	margin-block: 20px;
+	transition-duration: .5s;
+	--webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+	background-color: #f5f5f7;
+	&:hover {
+		--webkit-transition-duration: 1s;
+		transition-duration: 1s;
+		-webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+		box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+	}
+	.itemsBlock {
+		ul {
+			display: flex;
+			overflow-x: scroll;
+			white-space: nowrap;
+			width: 80%;
+			margin-right: 5%;
+			&::-webkit-scrollbar {
+				height: 5px;
+			}
+	
+			&::-webkit-scrollbar-track {
+				box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.5);
+				border-radius: 10px;
+			}
+	
+			/* Handle */
+			&::-webkit-scrollbar-thumb {
+				background: #01010191;
+				border-radius: 10px;
+			}
+	
+			/* Handle on hover */
+			&::-webkit-scrollbar-thumb:hover {
+				background: #010101b7;
+			}
+			.item {
+				width: 100%;
+				word-wrap: nowrap;
+				margin-inline: 10px;
+			}
+		}
+	}
+	span {
+		display: flex;
+		.preDataInfo {
+			font-weight: 600;
+			width: 100px;
+			margin-left: 3rem;
+		}
+		h3, p {
+			font-size: 24px;
+		}
+	}
+	@media only screen and (max-width: 768px){
+		span {
+			display: block;
+		}		
+	}
+}

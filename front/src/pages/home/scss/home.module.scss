@@ -1,0 +1,10 @@
+.homePage {
+	max-width: 1200px;
+	margin-inline: auto;	
+	
+	.prodList {
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+	}
+}

@@ -1,0 +1,63 @@
+.adminHome {
+	max-width: 1200px;
+	margin-inline: auto;
+
+	.adminMenu {
+		display: flex;
+		flex-direction: column;
+
+		li {
+			margin-top: 20px;
+			height: 20vh;
+			width: 100%;
+			margin-left: 5px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: none;
+			border-radius: 10px;
+			transition-duration: .5s;
+			--webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+			box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+			background-color: #f5f5f7;
+
+			&:hover {
+				--webkit-transition-duration: 1s;
+				transition-duration: 1s;
+				//-webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+				box-shadow: rgba(50, 50, 93, 0.25) 0px 12px 24px 0px, rgba(0, 0, 0, 0.3) 0px 6px 12px 0px;
+				a {
+					color: #010101;
+					transition-duration: .5s;
+				}
+			}
+
+			a {
+				text-decoration: none;
+				font-size: 36px;
+				font-weight: 600;
+				color: #01010150;
+				transition-duration: .5s;
+			}
+		}
+	}
+
+	.movableLink {
+		position: absolute;
+		top: 90%;
+		left: 85%;
+		width: 50px;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		background-color: #11bcf5;
+
+		a {
+			color: aliceblue;
+			font-size: 24px;
+			text-decoration: none;
+		}
+	}
+}

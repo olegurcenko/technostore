@@ -1,0 +1,28 @@
+.allOrders {
+	max-width: 1200px;
+	margin-inline: auto;
+
+	h2 {
+		font-size: 36px;
+		margin-block: 2rem;
+		text-align: center;
+	}
+
+	.ordersList {
+		max-width: inherit;
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	.noOrdersBlock {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		h1 {
+			position: relative;
+			font-size: 36px;
+		}
+	}
+}

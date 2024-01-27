@@ -1,0 +1,16 @@
+.resultsByTypes {
+	max-width: 1200px;
+	margin-inline: auto;
+
+	.typeTitle {
+		margin-inline: auto;
+		text-align: center;
+		font-size: 36px;
+	}
+
+	.prodList {
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+	}
+}

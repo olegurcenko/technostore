@@ -1,8 +1,8 @@
 import express from 'express'
-import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import multer from 'multer'
+import stripe from 'stripe'
 import { userValidator } from './validations/userDataValidator.js'
 import { errorsHandler } from './utils/errorsHandler.js'
 import { userAuth, adminAuth } from './utils/auth.js'
@@ -32,6 +32,8 @@ const app = express()
 
 app.use(express.json())
 
+const stripeInstance = stripe('sk_test_51Ocx0qLYGgmXoVpsC1mGKdd1pkI658RJaquQpcRx0ejLhvdFsBILKEtn8TC3yCsJjWaDZHKXGFjAh61ipykQBrWB00Crao9eeg');
+
 const upload = multer({storage})
 
 app.use(cors())
@@ -44,15 +46,23 @@ app.post('/auth/register', userValidator, errorsHandler, userController.register
 
 app.post('/auth/login', userValidator, errorsHandler, userController.login)
 
-app.post('/products/makeorder', userController.createOrder)
+app.post('/product/makeorder', userController.createOrder)
+
+app.get('/orders', userController.getOrders)
 
 app.get('/auth/me', userAuth, userController.getMe)
 
 //! admin requests
 
+app.get('/admin/users', errorsHandler, adminController.getUsers)
+
 app.post('/auth/adminregister', adminValidator, errorsHandler, adminController.register)
 
 app.post('/auth/adminlogin', adminValidator, errorsHandler, adminController.login)
+
+app.get('/auth/admin/me', adminAuth, adminController.getMe)
+
+app.get('/admin/orders', adminAuth, adminController.getOrders)
 
 //! products requests
 
@@ -60,9 +70,13 @@ app.get('/product', productController.getAll)
 
 app.get('/product/search/:type', productController.getByType)
 
+app.get('/product/search/title/:title', productController.getByTitle)
+
 app.get('/product/:id', productController.getOne)
 
 app.post('/product/add/:id', userController.addItem)
+
+app.post('/product/remove/:id', userController.removeItem)
 
 app.post('/product', adminAuth, productController.create)
 
@@ -70,11 +84,43 @@ app.post('/product/:id', adminAuth, productController.remove)
 
 app.post('/product/update/:id', adminAuth, productController.update)
 
-app.post('/upload', adminAuth, upload.single('image'), (req, res) => {
+app.post('/upload', upload.single('images'), (req, res) => {
     res.json({
         url: `/uploads/${req.file.originalname}`,
     })
 })
+
+//! checkout request
+
+//app.post('/create-checkout-session', async (req, res) => {
+//    const { orderId, price } = req.body;
+  
+//    if (!orderId || !price) {
+//      return res.status(400).json({ error: 'orderId and price are required in the request body.' });
+//    }
+  
+//    try {
+//      const session = await stripeInstance.checkout.sessions.create({
+//        line_items: [
+//          {
+//            price: price,
+//            quantity: 1,
+//          },
+//        ],
+//        mode: 'payment',
+//        success_url: `${YOUR_DOMAIN}?success=true`,
+//        cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+//        client_reference_id: orderId, // Adding the orderId as a client reference ID
+//      });
+  
+//      res.redirect(303, session.url);
+//    } catch (error) {
+//      console.error('Error creating checkout session:', error);
+//      res.status(500).json({ error: 'Internal Server Error' });
+//    }
+//  });
+
+//!
 
 app.listen(4444, (err) => {
     if (err) {

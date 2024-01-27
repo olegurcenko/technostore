@@ -39,6 +39,62 @@ export const getByType = async (req, res) => {
 	}
 }
 
+
+export const getByTitle = async (req, res) => {
+	
+	const filter_by_title = (arg) => {
+		let i = 0;
+		if (arg[0].length < arg[1])
+		{
+			return (0)
+		}
+		while(arg[0][i] && arg[1][i])
+		{
+			if (arg[0][i].toLowerCase() != arg[1][i++].toLowerCase())
+			{
+				return (0);
+			}
+		}
+		return (1);
+	}
+
+	const title_cmp = (argv) => {
+		const title_search = argv[0]
+		const title_lst = argv[1].split(' ')
+		let i = 0
+		while (title_lst[i])
+		{
+			if (filter_by_title([title_search, title_lst[i++]]) == 1)
+			{
+				return (1)
+			}
+		}
+		return (0)
+	}
+
+	try {
+		const title = req.params.title
+
+		let products = await productModel.find()
+
+		products = products.filter((product) => title_cmp([title, product.title]))
+
+		if (products.length > 0) {
+			res.json(products)
+		} else {
+			res.status(400).json({
+				message: 'Cant get products'
+			})
+		}
+
+	} catch (err) {
+		console.log(err)
+		res.status(500).json({
+			message: 'Cant get products'
+		})
+	}
+}
+
 export const getOne = async (req, res) => {
 	try {
 		const prodId = req.params.id
@@ -71,7 +127,8 @@ export const create = async (req, res) => {
 			product_type: req.body.product_type,
 			short_description: req.body.short_description,
 			long_description: req.body.long_description,
-			price: req.body.price
+			price: req.body.price,
+			images: req.body.images
 		})
 
 		const product = await doc.save()

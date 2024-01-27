@@ -16,7 +16,7 @@ export const userAuth = async (req, res, next) => {
 		next()
 		
 	} catch (err) {
-		console.log(err)
+		//console.log(err)
 		res.status(500).json({
 			message: 'User not found'
 		})
@@ -33,7 +33,7 @@ export const adminAuth = async (req, res, next) => {
 
 		console.log(decoded._id)
 
-		req.userId = decoded._id
+		req.adminId = decoded._id
 		next()
 		
 	} catch (err) {

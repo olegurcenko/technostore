@@ -3,16 +3,18 @@
 	"version": "1.0.0",
 	"description": "Your Project Description",
 	"scripts": {
-		"start:backend": "cd back && npm start",
-		"start:frontend": "cd front && npm start",
-		"start": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+	  "start:backend": "cd back && npm start",
+	  "start:frontend": "cd front && npm start",
+	  "build:frontend": "cd front && npm run build",
+	  "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+	  "build": "npm run build:frontend"
 	},
 	"devDependencies": {
-		"concurrently": "^6.5.1"
+	  "concurrently": "^6.5.1"
 	},
 	"private": true,
 	"workspaces": [
-		"backend",
-		"front"
+	  "backend",
+	  "front"
 	]
-}
+  }

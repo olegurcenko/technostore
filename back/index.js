@@ -31,20 +31,11 @@ const storage = multer.diskStorage({
 
 const app = express()
 
-app.use((req, res, next) => {
-    req.header('Access-Control-Allow-Origin', '*'); // Adjust the domain
-    req.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-    req.header('Access-Control-Allow-Credentials', true);
-    next();
-});
-
 app.use(express.json())
 
 const upload = multer({storage})
 
 app.use(cors());
-
-app.options('*', cors());
 
 app.use('/api/uploads', express.static('uploads'))
 

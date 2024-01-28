@@ -12,6 +12,7 @@ import { adminValidator } from './validations/adminDataValidator.js'
 mongoose.connect(
     'mongodb+srv://admin:admin12345@cluster0.damqkmb.mongodb.net/?retryWrites=true&w=majority'
 )
+
 .then(() => {
     console.log('db is connected')
 })
@@ -32,7 +33,7 @@ const app = express()
 
 app.use(express.json())
 
-const stripeInstance = stripe('sk_test_51Ocx0qLYGgmXoVpsC1mGKdd1pkI658RJaquQpcRx0ejLhvdFsBILKEtn8TC3yCsJjWaDZHKXGFjAh61ipykQBrWB00Crao9eeg');
+//const stripeInstance = stripe('sk_test_51Ocx0qLYGgmXoVpsC1mGKdd1pkI658RJaquQpcRx0ejLhvdFsBILKEtn8TC3yCsJjWaDZHKXGFjAh61ipykQBrWB00Crao9eeg');
 
 const upload = multer({storage})
 

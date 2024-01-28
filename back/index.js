@@ -42,9 +42,6 @@ app.use(cors({
     credentials: true,
 }));
 
-
-  
-
 app.use('/api/uploads', express.static('uploads'))
 
 //! user requests

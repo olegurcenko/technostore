@@ -53,7 +53,7 @@ export const ImageUploadForm = () => {
 
     fetchData();
   }, []);
-
+//!
   const handleChangeFile = async (event) => {
     try {
       var i = 0;
@@ -64,6 +64,7 @@ export const ImageUploadForm = () => {
         var file = event.target.files[i++];
         formData.append('images', file);
         var { data } = await axios.post('/upload', formData);
+        console.log(data)
         nameArr.push(data.url);
       }
       setProductDetails((prevDetails) => ({

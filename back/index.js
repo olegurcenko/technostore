@@ -38,56 +38,57 @@ app.use(express.json())
 const upload = multer({storage})
 
 app.use(cors())
+        //origin: 'https://technostoreproj.com', // Replace with your frontend domain)
 
-app.use('/uploads', express.static('uploads'))
+app.use('/api/uploads', express.static('uploads'))
 
 //! user requests
 
-app.post('/auth/register', userValidator, errorsHandler, userController.register)
+app.post('/api/auth/register', userValidator, errorsHandler, userController.register)
 
-app.post('/auth/login', userValidator, errorsHandler, userController.login)
+app.post('/api/auth/login', userValidator, errorsHandler, userController.login)
 
-app.post('/product/makeorder', userController.createOrder)
+app.post('/api/product/makeorder', userController.createOrder)
 
-app.get('/orders', userController.getOrders)
+app.get('/api/orders', userController.getOrders)
 
-app.get('/auth/me', userAuth, userController.getMe)
+app.get('/api/auth/me', userAuth, userController.getMe)
 
 //! admin requests
 
-app.get('/admin/users', errorsHandler, adminController.getUsers)
+app.get('/api/admin/users', errorsHandler, adminController.getUsers)
 
-app.post('/auth/adminregister', adminValidator, errorsHandler, adminController.register)
+app.post('/api/auth/adminregister', adminValidator, errorsHandler, adminController.register)
 
-app.post('/auth/adminlogin', adminValidator, errorsHandler, adminController.login)
+app.post('/api/auth/adminlogin', adminValidator, errorsHandler, adminController.login)
 
-app.get('/auth/admin/me', adminAuth, adminController.getMe)
+app.get('/api/auth/admin/me', adminAuth, adminController.getMe)
 
-app.get('/admin/orders', adminAuth, adminController.getOrders)
+app.get('/api/admin/orders', adminAuth, adminController.getOrders)
 
 //! products requests
 
-app.get('/product', productController.getAll)
+app.get('/api/product', productController.getAll)
 
-app.get('/product/search/:type', productController.getByType)
+app.get('/api/product/search/:type', productController.getByType)
 
-app.get('/product/search/title/:title', productController.getByTitle)
+app.get('/api/product/search/title/:title', productController.getByTitle)
 
-app.get('/product/:id', productController.getOne)
+app.get('/api/product/:id', productController.getOne)
 
-app.post('/product/add/:id', userController.addItem)
+app.post('/api/product/add/:id', userController.addItem)
 
-app.post('/product/remove/:id', userController.removeItem)
+app.post('/api/product/remove/:id', userController.removeItem)
 
-app.post('/product', adminAuth, productController.create)
+app.post('/api/product', adminAuth, productController.create)
 
-app.post('/product/:id', adminAuth, productController.remove)
+app.post('/api/product/:id', adminAuth, productController.remove)
 
-app.post('/product/update/:id', adminAuth, productController.update)
+app.post('/api/product/update/:id', adminAuth, productController.update)
 
-app.post('/upload', upload.single('images'), (req, res) => {
+app.post('/api/upload', upload.single('images'), (req, res) => {
     res.json({
-        url: `/uploads/${req.file.originalname}`,
+        url: `/api/uploads/${req.file.originalname}`,
     })
 })
 

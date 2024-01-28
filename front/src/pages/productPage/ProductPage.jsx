@@ -15,7 +15,8 @@ export const ProductPage = () => {
 	const [product, setProduct] = useState();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const baseUrl = getBaseUrl();
+	//const baseUrl = getBaseUrl();
+	const baseUrl = 'http://localhost:4444'
 	const {id} = useParams();
 
 	React.useEffect(() => {

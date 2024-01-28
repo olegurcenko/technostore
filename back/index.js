@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
 const app = express()
 
 app.use((req, res, next) => {
-    req.header('Access-Control-Allow-Origin', '*'); // Adjust the domain
+    req.header('Access-Control-Allow-Origin', '*'); 
     req.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
     req.header('Access-Control-Allow-Credentials', true);
     next();

@@ -33,15 +33,11 @@ const app = express()
 
 app.use(express.json())
 
-//const stripeInstance = stripe('sk_test_51Ocx0qLYGgmXoVpsC1mGKdd1pkI658RJaquQpcRx0ejLhvdFsBILKEtn8TC3yCsJjWaDZHKXGFjAh61ipykQBrWB00Crao9eeg');
-
 const upload = multer({storage})
 
-app.use(cors({
-    origin: 'https://www.technostoreproj.com', // Replace with your frontend domain
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  }));
+app.use(cors());
+
+app.options('*', cors());
 
 app.use('/api/uploads', express.static('uploads'))
 
@@ -94,36 +90,6 @@ app.post('/api/upload', upload.single('images'), (req, res) => {
         url: `/api/uploads/${req.file.originalname}`,
     })
 })
-
-//! checkout request
-
-//app.post('/create-checkout-session', async (req, res) => {
-//    const { orderId, price } = req.body;
-  
-//    if (!orderId || !price) {
-//      return res.status(400).json({ error: 'orderId and price are required in the request body.' });
-//    }
-  
-//    try {
-//      const session = await stripeInstance.checkout.sessions.create({
-//        line_items: [
-//          {
-//            price: price,
-//            quantity: 1,
-//          },
-//        ],
-//        mode: 'payment',
-//        success_url: `${YOUR_DOMAIN}?success=true`,
-//        cancel_url: `${YOUR_DOMAIN}?canceled=true`,
-//        client_reference_id: orderId, // Adding the orderId as a client reference ID
-//      });
-  
-//      res.redirect(303, session.url);
-//    } catch (error) {
-//      console.error('Error creating checkout session:', error);
-//      res.status(500).json({ error: 'Internal Server Error' });
-//    }
-//  });
 
 //!
 

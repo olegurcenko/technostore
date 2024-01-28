@@ -6,7 +6,7 @@
 		  "headers": [
 			{
 			  "key": "Access-Control-Allow-Origin",
-			  "value": "https://www.technostoreproj.com"
+			  "value": "*"
 			},
 			{
 			  "key": "Access-Control-Allow-Methods",

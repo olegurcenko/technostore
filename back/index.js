@@ -38,7 +38,7 @@ app.use(express.json())
 const upload = multer({storage})
 
 app.use(cors({
-    origin: 'https://www.technostoreproj.com',
+    origin: '*',
     credentials: true,
 }));
 

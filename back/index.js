@@ -37,10 +37,10 @@ app.use(express.json())
 
 const upload = multer({storage})
 
-app.use(cors({
-    origin: '*',
-    credentials: true,
-}));
+//app.use(cors({
+//    origin: '*',
+//    credentials: true,
+//}));
 
 app.use('/api/uploads', express.static('uploads'))
 

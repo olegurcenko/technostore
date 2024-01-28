@@ -37,8 +37,10 @@ app.use(express.json())
 
 const upload = multer({storage})
 
-app.use(cors())
-        //origin: 'https://technostoreproj.com', // Replace with your frontend domain)
+app.use(cors({
+    origin: 'https://www.technostoreproj.com',
+    credentials: true,
+}));
 
 app.use('/api/uploads', express.static('uploads'))
 

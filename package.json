@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "Your Project Description",
 	"scripts": {
-	  "start:backend": "cd backend && npm start",
+	  "start:backend": "cd back && npm start",
 	  "start:frontend": "cd front && npm start",
 	  "build:frontend": "cd front && npm run build",
 	  "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",

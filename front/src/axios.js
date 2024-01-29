@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const instance = axios.create({
 	//baseURL: 'https://technostoreproj.com/api'
-	baseURL: 'http://localhost:4444/api'
-	//baseURL: 'https://technostore-p37h.vercel.app/api'
+	//baseURL: 'http://localhost:4444/api'
+	baseURL: 'https://technostore-p37h.vercel.app/api'
 });
 
 instance.interceptors.request.use((config) => {

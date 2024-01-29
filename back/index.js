@@ -44,7 +44,7 @@ const upload = multer({storage})
 
 app.use(cors());
 
-app.options('*', cors());
+app.options(cors());
 
 app.use('/api/uploads', express.static('uploads'))
 
@@ -91,6 +91,8 @@ app.post('/api/product', adminAuth, productController.create)
 app.post('/api/product/:id', adminAuth, productController.remove)
 
 app.post('/api/product/update/:id', adminAuth, productController.update)
+
+//!upload, not display
 
 app.post('/api/upload', upload.single('images'), (req, res) => {
     res.json({

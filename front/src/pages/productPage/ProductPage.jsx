@@ -3,6 +3,7 @@ import { adminLogout, fetchAuthMe } from "../../redux/slices/auth";
 import { useNavigate, useParams } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import styles from './css/productCard.module.css';
+import './css/productCard.css';
 import axios, { getBaseUrl } from '../../axios';
 import Skeleton from "@mui/material/Skeleton";
 import { useDispatch } from 'react-redux';
@@ -15,8 +16,8 @@ export const ProductPage = () => {
 	const [product, setProduct] = useState();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	//const baseUrl = getBaseUrl();
-	const baseUrl = 'http://localhost:4444'
+	const baseUrl = getBaseUrl();
+	//const baseUrl = 'http://localhost:4444'
 	const {id} = useParams();
 
 	React.useEffect(() => {
@@ -68,7 +69,7 @@ export const ProductPage = () => {
 			<section className={styles.carouselBlock}>
 			<section className={styles.imageBlock}>
 					{product.images ? 
-						<Carousel>
+						<Carousel className="carouselCustom">
 							{product.images.map((image) => <img src={`${baseUrl}${image}`} alt="" />)}
 						</Carousel> : 
 						<Skeleton className={styles.skeletonImage} variant="rounded" animation='wave'/>}

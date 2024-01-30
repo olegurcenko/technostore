@@ -2,7 +2,6 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import multer from 'multer'
-import stripe from 'stripe'
 import { userValidator } from './validations/userDataValidator.js'
 import { errorsHandler } from './utils/errorsHandler.js'
 import { userAuth, adminAuth } from './utils/auth.js'
@@ -31,8 +30,6 @@ const storage = multer.diskStorage({
 const app = express()
 
 app.use(express.json())
-
-const stripeInstance = stripe('sk_test_51Ocx0qLYGgmXoVpsC1mGKdd1pkI658RJaquQpcRx0ejLhvdFsBILKEtn8TC3yCsJjWaDZHKXGFjAh61ipykQBrWB00Crao9eeg');
 
 const upload = multer({storage})
 

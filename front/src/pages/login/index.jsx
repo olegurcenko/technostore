@@ -79,7 +79,7 @@ export const Login = () => {
       </Paper>
       <span className={styles.loginLinksBlock}>
         <Link className={styles.loginLink} to='/register'>Dont have Account?</Link>
-        <Link className={styles.loginLink} to='/admin/login'>Admin?</Link>
+        {/*<Link className={styles.loginLink} to='/admin/login'>Admin?</Link>*/}
       </span>
     </section>
   );

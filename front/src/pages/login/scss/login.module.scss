@@ -5,7 +5,23 @@
 	box-sizing: inherit;
 	font-size: 62, 5%;
 }
+@media (max-width: 768px) {
+	*{
+		&::-webkit-scrollbar {
+			display: none!important;
+		}
 
+		.loginPage {
+			.loginBlock {
+				.loginForm {
+					input {
+						max-width: 85%;
+					}
+				}
+			}
+		}
+	}
+}
 .loginPage {
 
 	.loginBlock {
@@ -150,7 +166,7 @@
 		margin-inline: auto;
 		max-width: 800px;
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 
 		.loginLink {
 			padding: 10px 30px;

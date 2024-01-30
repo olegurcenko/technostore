@@ -35,7 +35,7 @@ const Popup = ({ onClose }) => {
         <Link to='/product/search/mobile_phone' onClick={onClose}>Smartphones</Link>
         <Link to='/product/search/notebook' onClick={onClose}>Notebooks</Link>
         <Link to='/product/search/tablet' onClick={onClose}>Tablets</Link>
-        <Link to='/product/search/mobile_phone' onClick={onClose}>Accessories</Link>
+        <Link to='/product/search/accessories' onClick={onClose}>Accessories</Link>
         {userData || adminData ? (<Link to='/' onClick={onClickLogout}>Logout</Link>) : (<Link to='/login' onClick={onClose}>Login</Link>)}
         </div>
       </div>

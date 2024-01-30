@@ -7,6 +7,14 @@
   font-size: 62, 5%;
 }
 
+@media (max-width: 768px) {
+  *::-webkit-scrollbar {
+    display: none !important;
+  }
+  * .loginPage .loginBlock .loginForm input {
+    max-width: 85%;
+  }
+}
 .loginPage .loginBlock {
   margin-top: 2rem;
   max-width: 800px;
@@ -175,9 +183,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .loginPage .loginLinksBlock .loginLink {
   padding: 10px 30px;

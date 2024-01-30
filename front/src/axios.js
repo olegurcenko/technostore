@@ -4,7 +4,7 @@ const instance = axios.create({
 	//baseURL: 'https://technostoreproj.com/api'
 	//baseURL: 'http://localhost:4444'
 	//baseURL: 'https://technostore-p37h.vercel.app/api'
-	baseURL: 'http://37.1.218.188:4444'
+	baseURL: 'http://46.175.151.181:4444'
 });
 
 instance.interceptors.request.use((config) => {

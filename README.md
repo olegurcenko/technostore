@@ -3,7 +3,7 @@
 #### TechnoStore
 
 
-My first project with registration system. There are 2 roles: admin, user. As user you can create orders, add products to your wishlist. Built with React, ExpressJS, Redux, JavaScript, and SCSS.
+My first project with registration system. There are 2 roles: admin, user. As user you can create orders, add products to your wishlist. Built with React, ExpressJS, Redux, JavaScript, and SCSS. You can visit it by entering this ip and port: http://46.175.151.181:3000/
 
 ## Project Status
 in development
